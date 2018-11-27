@@ -6,6 +6,11 @@ class Counter extends Component {
 		tags: ['t1', 't2', 't3']
 	};
 
+	constructor(){
+		super();
+		this.handleIncrement = this.handleIncrement.bind(this);
+	}
+
 	render() {
 		return (
 			<div>
@@ -20,7 +25,8 @@ class Counter extends Component {
 	}
 
 	handleIncrement() {
-		console.log("incremnt clciked")
+		console.log("incremnt clciked");
+		console.log(this);
 	}
 
 	getBadgeClasses() {
