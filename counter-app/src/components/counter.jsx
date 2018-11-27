@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class Counter extends Component {
 	state = {
 		count: 0,
+		tags: ['t1', 't2', 't3']
 	};
 
 	render() {
@@ -14,8 +15,20 @@ class Counter extends Component {
 				*/}
 				<span className={ this.getBadgeClasses() }>{ this.formatCount() }</span> 
 				<button className="btn btn-secondary btn-sm">Increment</button>
+				<ul>
+					{ this.mapToList() }
+				</ul>
 			</div>
 		);		
+	}
+
+	mapToList() {
+		/* 
+		This code below basically puts each item inside
+		the tags array into <li> html objects
+		*/
+		const tags = this.state.tags;
+		return tags.map(tag => <li key={tags.indexOf(tag)}>{tag}</li>);
 	}
 
 	getBadgeClasses() {
@@ -28,7 +41,7 @@ class Counter extends Component {
 
 	formatCount() {
 		const { count } = this.state;
-		return count == 0 ? 'Zero' : count;
+		return count === 0 ? 'Zero' : count;
 	}
 }
 
