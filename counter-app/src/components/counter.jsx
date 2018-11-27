@@ -12,10 +12,14 @@ class Counter extends Component {
 			redundant div tags in the sourcecode.
 		*/
 		return (
-			<React.Fragment>		
-				<span>{ this.formatCount() }</span>
-				<button>Increment</button>
-			</React.Fragment>
+			<div>
+				{/* 
+					We have to use className for span / div class name because
+					class is obviously a reserved keyword in jsx.
+				*/}
+				<span className="badge badge-primary m-2">{ this.formatCount() }</span> 
+				<button className="btn btn-secondary btn-sm">Increment</button>
+			</div>
 		);		
 	}
 
