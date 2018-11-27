@@ -9,26 +9,31 @@ class Counter extends Component {
 	render() {
 		return (
 			<div>
-				{ 
-				/* 
-					Some parts of the code were removed to clean up a bit
-					for the tutorial
-				 */ 
-				}
-				{
-					/*
-					 * 
-					 * Below is a conditional rendering example
-					 * using truthy / falsy statement
-					 * which will print "Please create tags"
-					 * if tags array is empty
-					 *  
-					*/ 
-					this.state.tags.length === 0 && "Please create tags" 
-				}
-				{ this.renderList() }
+				{/* 
+					We have to use className for span / div class name because
+					class is obviously a reserved keyword in jsx.
+				*/}
+				<span className={ this.getBadgeClasses() }>{ this.formatCount() }</span> 
+				<button onClick = { this.handleIncrement } className="btn btn-secondary btn-sm">Increment</button>
 			</div>
 		);		
+	}
+
+	handleIncrement() {
+		console.log("incremnt clciked")
+	}
+
+	getBadgeClasses() {
+		// let is used instead of var, because we only need 
+		// it within this scope, not global
+		let classes = "badge m-2 badge-";
+		classes += this.state.count === 0 ? "warning" : "primary";
+		return classes;
+	}
+
+	formatCount() {
+		const { count } = this.state;
+		return count === 0 ? 'Zero' : count;
 	}
 
 	renderList() {
