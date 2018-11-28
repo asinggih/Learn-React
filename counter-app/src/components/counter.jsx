@@ -6,10 +6,11 @@ class Counter extends Component {
 		tags: ['t1', 't2', 't3']
 	};
 
-	constructor(){
-		super();
-		this.handleIncrement = this.handleIncrement.bind(this);
-	}
+	// constructor(){
+	// 	super();
+	// 	this.handleIncrement = this.handleIncrement.bind(this);
+	// 	this.doHandleIncrement = this.doHandleIncrement.bind(this);
+	// }
 
 	render() {
 		return (
@@ -19,16 +20,21 @@ class Counter extends Component {
 					class is obviously a reserved keyword in jsx.
 				*/}
 				<span className={ this.getBadgeClasses() }>{ this.formatCount() }</span> 
-				<button onClick = { this.handleIncrement } className="btn btn-secondary btn-sm">Increment</button>
+				<button onClick = { () => this.handleIncrement({id: 1}) } className="btn btn-secondary btn-sm">Increment</button>
 			</div>
 		);		
 	}
 
-	handleIncrement() {
+	// doHandleIncrement () {
+	// 	this.handleIncrement({ id:1 });
+	// }
+
+	handleIncrement = (product) => {
 		/* 
 			We're passing a new state object (or override, if it already exist),
 			to the current Class' state.
 		*/
+		console.log(product);
 		this.setState( { count: this.state.count + 1 } );
 	}
 
