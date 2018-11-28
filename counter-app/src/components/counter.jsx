@@ -25,8 +25,11 @@ class Counter extends Component {
 	}
 
 	handleIncrement() {
-		console.log("incremnt clciked");
-		console.log(this);
+		/* 
+			We're passing a new state object (or override, if it already exist),
+			to the current Class' state.
+		*/
+		this.setState( { count: this.state.count + 1 } );
 	}
 
 	getBadgeClasses() {
