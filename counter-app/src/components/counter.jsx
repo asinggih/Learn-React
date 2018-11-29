@@ -14,6 +14,8 @@ class Counter extends Component {
 	render() {
 		return (
 			<div>
+				{/* {this.props.children} */}
+				<h3>Counter #{this.props.id}</h3>
 				{/* 
 					We have to use className for span / div class name because
 					class is obviously a reserved keyword in jsx.
