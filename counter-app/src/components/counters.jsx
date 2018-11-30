@@ -13,8 +13,11 @@ class Counters extends Component {
 
 	// we want to pass a reference to this method
 	// using props to our child component.
-	handleDelete = () => {
-		console.log("event handler called");
+	handleDelete = counterID => {
+		// create a new counters list but without
+		// the element of the given counterID
+		const counters = this.state.counters.filter(c => c.id !== counterID);
+		this.setState({ counters: counters });
 	};
 
 	render() {
@@ -24,8 +27,7 @@ class Counters extends Component {
 					<Counter
 						key={counter.id}
 						onDelete={this.handleDelete}
-						value={counter.value}
-						id={counter.id}
+						counter={counter}
 					/>
 				))}
 			</div>
