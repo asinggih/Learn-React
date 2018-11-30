@@ -11,6 +11,18 @@ class Counters extends Component {
 		]
 	};
 
+	handleIncrement = counter => {
+		const counters = [...this.state.counters];
+		const idx = counters.indexOf(counter);
+		// assign item on the particular index
+		// to a new object, which is the argument of the function
+		counters[idx] = {
+			...counter // ... means expand whatever is inside the variable counter
+		};
+		counters[idx].value += 1;
+		this.setState({ counters: counters }); // update state with the updated counters array
+	};
+
 	// we want to pass a reference to this method
 	// using props to our child component.
 	handleDelete = counterID => {
@@ -41,6 +53,7 @@ class Counters extends Component {
 					<Counter
 						key={counter.id}
 						onDelete={this.handleDelete}
+						onIncrement={this.handleIncrement}
 						counter={counter}
 					/>
 				))}

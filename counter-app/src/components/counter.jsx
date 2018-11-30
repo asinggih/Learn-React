@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-	state = {
-		value: this.props.counter.value
-	};
+	getBadgeClasses() {
+		// let is used instead of var, because we only need
+		// it within this scope, not global
+		let classes = "badge m-2 badge-";
+		classes += this.props.counter.value === 0 ? "warning" : "primary";
+		return classes;
+	}
 
-	// constructor(){
-	// 	super();
-	// 	this.handleIncrement = this.handleIncrement.bind(this);
-	// 	this.doHandleIncrement = this.doHandleIncrement.bind(this);
-	// }
+	formatCount() {
+		const value = this.props.counter.value;
+		return value === 0 ? "Zero" : value;
+	}
 
 	render() {
 		return (
@@ -24,7 +27,7 @@ class Counter extends Component {
 					{this.formatCount()}
 				</span>
 				<button
-					onClick={this.handleIncrement}
+					onClick={() => this.props.onIncrement(this.props.counter)}
 					className="btn btn-secondary btn-sm"
 				>
 					Increment
@@ -39,31 +42,6 @@ class Counter extends Component {
 				</button>
 			</div>
 		);
-	}
-
-	// doHandleIncrement () {
-	// 	this.handleIncrement({ id:1 });
-	// }
-
-	handleIncrement = () => {
-		/* 
-			We're passing a new state object (or override, if it already exist),
-			to the current Class' state.
-		*/
-		this.setState({ value: this.state.value + 1 });
-	};
-
-	getBadgeClasses() {
-		// let is used instead of var, because we only need
-		// it within this scope, not global
-		let classes = "badge m-2 badge-";
-		classes += this.state.value === 0 ? "warning" : "primary";
-		return classes;
-	}
-
-	formatCount() {
-		const { value } = this.state;
-		return value === 0 ? "Zero" : value;
 	}
 }
 
