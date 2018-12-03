@@ -3,24 +3,28 @@ import Counter from "./counter";
 
 class Counters extends Component {
 	render() {
+		// No more this.props.method in these defined
+		// methods below (Destructuring)
+		const { onReset, counters, onDelete, onIncrement } = this.props;
+
 		return (
 			<div>
 				<button
-					onClick={this.props.onReset}
+					onClick={onReset}
 					className="btn btn-primary btn-sm m-2"
 				>
 					Reset
 				</button>
 				{/* 
                     Changed this.state.counters into
-                    this.props.counters since we already lifted the counters array
+                    counters since we already lifted the counters array
                     to App.js 
                 */}
-				{this.props.counters.map(counter => (
+				{counters.map(counter => (
 					<Counter
 						key={counter.id}
-						onDelete={this.props.onDelete}
-						onIncrement={this.props.onIncrement}
+						onDelete={onDelete}
+						onIncrement={onIncrement}
 						counter={counter}
 					/>
 				))}
