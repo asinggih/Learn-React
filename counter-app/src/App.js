@@ -14,17 +14,6 @@ class App extends Component {
 			{ id: 4, value: 0 }
 		]
 	};
-
-	// only called once when instance of the app is created
-	constructor(props) {
-		super(props);
-		console.log("app-constructor");
-	}
-
-	componentDidMount() {
-		console.log("app mounted");
-	}
-
 	handleIncrement = counter => {
 		const counters = [...this.state.counters];
 		const idx = counters.indexOf(counter);
@@ -35,6 +24,16 @@ class App extends Component {
 		};
 		counters[idx].value += 1;
 		this.setState({ counters: counters }); // update state with the updated counters array
+	};
+
+	handleDecrement = counter => {
+		const tempCounters = [...this.state.counters];
+		const idx = tempCounters.indexOf(counter);
+
+		if (tempCounters[idx].value > 0) {
+			tempCounters[idx].value -= 1;
+		}
+		this.setState({ tempCounters });
 	};
 
 	// we want to pass a reference to this method
@@ -54,21 +53,26 @@ class App extends Component {
 		this.setState({ counters: counters });
 	};
 
+	handleTotal = () => {
+		const { counters } = this.state;
+		let totalItems = 0;
+
+		for (var i = 0; i < counters.length; i++) {
+			totalItems += counters[i].value;
+		}
+		return totalItems;
+	};
+
 	render() {
-		console.log("app-rendered");
 		return (
 			<React.Fragment>
-				<Navbar
-					totalCounters={
-						this.state.counters.filter(counter => counter.value > 0)
-							.length
-					}
-				/>
+				<Navbar totalCounters={this.handleTotal()} />
 				<main className="container">
 					<Counters
 						counters={this.state.counters}
 						onReset={this.handleReset}
 						onIncrement={this.handleIncrement}
+						onDecrement={this.handleDecrement}
 						onDelete={this.handleDelete}
 					/>
 				</main>
