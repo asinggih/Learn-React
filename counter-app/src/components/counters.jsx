@@ -3,6 +3,7 @@ import Counter from "./counter";
 
 class Counters extends Component {
 	render() {
+		console.log("COunters rendered");
 		// No more this.props.method in these defined
 		// methods below (Destructuring)
 		const { onReset, counters, onDelete, onIncrement } = this.props;

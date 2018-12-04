@@ -15,6 +15,16 @@ class App extends Component {
 		]
 	};
 
+	// only called once when instance of the app is created
+	constructor(props) {
+		super(props);
+		console.log("app-constructor");
+	}
+
+	componentDidMount() {
+		console.log("app mounted");
+	}
+
 	handleIncrement = counter => {
 		const counters = [...this.state.counters];
 		const idx = counters.indexOf(counter);
@@ -45,6 +55,7 @@ class App extends Component {
 	};
 
 	render() {
+		console.log("app-rendered");
 		return (
 			<React.Fragment>
 				<Navbar

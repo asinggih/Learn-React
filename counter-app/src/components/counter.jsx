@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.counter.value !== this.props.counter.value) {
+			// do ajax call to pull new value
+		}
+	}
+
+	componentWillUnmount() {
+		console.log("Counter - removed");
+	}
+
 	getBadgeClasses() {
 		// let is used instead of var, because we only need
 		// it within this scope, not global
@@ -15,6 +25,7 @@ class Counter extends Component {
 	}
 
 	render() {
+		console.log("Counter rendered");
 		return (
 			<div>
 				{/* {this.props.children} */}
