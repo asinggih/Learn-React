@@ -1,0 +1,16 @@
+.image-list {
+	display: grid;
+	/* 
+    repeat creates set number of columns:
+        - auto fill: lets the css system decides how many columns to insert
+        - minmax: 250px is the minimum width of the image, and 1fr means the maximum
+                    possible size within that grid (maximum allocation space)
+     */
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	grid-gap: 10px;
+	grid-auto-rows: 150px;
+}
+
+.image-list img {
+	width: 250px;
+}
