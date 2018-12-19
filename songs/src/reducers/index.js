@@ -33,6 +33,7 @@ const selectedSongReducer = (selectedSong = null, action) => {
 	return selectedSong;
 };
 
+// The keys inside this function below will be the keys in our state object
 export default combineReducers({
 	// Need to import this from redux first
 	songs: songsReducer,
