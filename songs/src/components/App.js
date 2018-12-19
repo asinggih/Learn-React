@@ -14,7 +14,7 @@ const App = () => {
 					<SongList />
 				</div>
 
-				<div className="ui column centered eight wide">
+				<div className="ui column eight wide">
 					<SongDetail />
 				</div>
 			</div>
