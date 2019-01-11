@@ -8,11 +8,18 @@ class PostList extends Component {
 	}
 
 	render() {
+		console.log(this.props.posts);
 		return <div>PostList</div>;
 	}
 }
 
+const mapStateToProps = state => {
+	// key of the returned object needs to match
+	// the key in combineReducers
+	return { posts: state.posts };
+};
+
 export default connect(
-	null, // we will eventually put mapStateToProps, but atm its null since we don't hv any states
+	mapStateToProps,
 	{ fetchPosts } // same as { fetchPosts: fetchPosts }
 )(PostList);
