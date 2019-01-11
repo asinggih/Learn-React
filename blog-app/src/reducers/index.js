@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
+import postsReducer from "./postsReducer";
 
 export default combineReducers({
-	placeHolder: () => "placeHolder" // just to remove the redux error in console
+	posts: postsReducer
 });
