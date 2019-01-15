@@ -41,8 +41,6 @@ class PostList extends Component {
 }
 
 const mapStateToProps = state => {
-	// key of the returned object needs to match
-	// the key in combineReducers
 	return { posts: state.posts };
 };
 
