@@ -8,11 +8,7 @@ class UserHeader extends Component {
 	}
 
 	render() {
-		const { users, userId } = this.props;
-
-		// find the user with the same user id as the one from
-		// this.props.userId, from the returned users array of the api call
-		const currentUser = users.find(user => user.id === userId);
+		const { currentUser } = this.props;
 
 		return currentUser ? (
 			<div className="header">{currentUser.name}</div>
@@ -22,8 +18,20 @@ class UserHeader extends Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return { users: state.users };
+/**
+ * ownProps let us use the this.props of the current component,
+ * from the mapStateToProps function
+ * */
+
+const mapStateToProps = (state, ownProps) => {
+	/**
+	 * find the user with the same user id as the one from
+	 * ownProps.userId (as opposed to this.props),
+	 * from the returned users array of the api call
+	 */
+	return {
+		currentUser: state.users.find(user => user.id === ownProps.userId)
+	};
 };
 
 export default connect(
