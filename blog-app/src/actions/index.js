@@ -11,12 +11,12 @@ export const fetchPosts = () => async dispatch => {
 };
 
 export const fetchUser = id => async dispatch => {
-	// The response of this api call will be an object, 
+	// The response of this api call will be an object,
 	// instead of a list of objects like in fetchPosts
-	const res = await jsonPlaceholder.get(`/users/${id}`));
+	const res = await jsonPlaceholder.get(`/users/${id}`);
 
 	dispatch({
 		type: "FETCH_USER",
 		payload: res.data
-	})
+	});
 };
