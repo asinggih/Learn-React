@@ -20,6 +20,16 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
 	uniqUserIds.forEach(id => dispatch(fetchUser(id)));
 
 	/**
+	 * The code above can be refactored by using the Lodash's
+	 * chain library to hv a more compact feature
+	 */
+	// _.chain(getState().posts)
+	// 	.map("userId") // func above becomes first arg of cur func
+	// 	.uniq() // same concept
+	// 	.forEach(id => dispatch(fetchUser(id)))
+	// 	.value(); // this function executes the whole chain
+
+	/**
 	 * the map - dispatch function returns array of promises instead.
 	 * By using Promise.all, we combine the array of promise into
 	 * a single promise, after all of them has been resolved.
