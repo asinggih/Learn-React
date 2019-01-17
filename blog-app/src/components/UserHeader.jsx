@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchUser } from "../actions";
 
 class UserHeader extends Component {
-	componentDidMount() {
-		this.props.fetchUser(this.props.userId);
-	}
+	// Removed fetchUser since it will be handled by fetchUserAndPosts() at PostList
 
 	render() {
 		const { currentUser } = this.props;
@@ -34,7 +31,4 @@ const mapStateToProps = (state, ownProps) => {
 	};
 };
 
-export default connect(
-	mapStateToProps,
-	{ fetchUser }
-)(UserHeader);
+export default connect(mapStateToProps)(UserHeader);
