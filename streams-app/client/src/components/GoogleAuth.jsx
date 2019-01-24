@@ -3,11 +3,6 @@ import { connect } from "react-redux";
 import { signIn, signOut } from "../actions";
 
 class GoogleAuth extends Component {
-	state = {
-		// initial state is null cos we don't know if user is signed in or not
-		isSignedIn: null
-	};
-
 	componentDidMount() {
 		// The 2nd argument is for the callback to initate the Oauth client,
 		// after the first library has been properly loaded
@@ -18,23 +13,23 @@ class GoogleAuth extends Component {
 				scope: "email"
 			});
 			this.auth = window.gapi.auth2.getAuthInstance();
-			this.setState({
-				isSignedIn: this.auth.isSignedIn.get()
-			});
+			this.onAuthChange(this.auth.isSignedIn.get());
 			// Update auth status on the fly
 			this.auth.isSignedIn.listen(this.onAuthChange); // no () since its a callback
 		});
 	}
 
-	onAuthChange = () => {
-		this.setState({
-			isSignedIn: this.auth.isSignedIn.get()
-		});
+	onAuthChange = isSignedIn => {
+		if (isSignedIn) {
+			this.props.signIn(); // our action creator method
+		} else {
+			this.props.signOut();
+		}
 	};
 
 	// Helper methods for signing in and signing out
 	onSignInClick = () => {
-		this.auth.signIn();
+		this.auth.signIn(); // gapi method
 	};
 
 	onSignOutClick = () => {
@@ -42,9 +37,17 @@ class GoogleAuth extends Component {
 	};
 
 	renderAuthButton() {
-		if (this.state.isSignedIn === null) {
+		/**
+		 * isSignedIn is now stored in Redux, not
+		 * in component level state.
+		 *
+		 * Hence, this.props is used as opposed to
+		 * this.state.
+		 */
+
+		if (this.props.isSignedIn === null) {
 			return null;
-		} else if (this.state.isSignedIn === true) {
+		} else if (this.props.isSignedIn === true) {
 			return (
 				<button
 					className="ui red google button"
@@ -76,7 +79,13 @@ class GoogleAuth extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		isSignedIn: state.authentication.isSignedIn // can be null, true, or false
+	};
+};
+
 export default connect(
-	null, // eventually will be replaced with mapStateToProps
+	mapStateToProps,
 	{ signIn, signOut } // actions that we imported
 )(GoogleAuth);
