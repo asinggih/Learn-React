@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { signIn, signOut } from "../actions";
 
 class GoogleAuth extends Component {
 	state = {
@@ -74,4 +76,7 @@ class GoogleAuth extends Component {
 	}
 }
 
-export default GoogleAuth;
+export default connect(
+	null, // eventually will be replaced with mapStateToProps
+	{ signIn, signOut } // actions that we imported
+)(GoogleAuth);
