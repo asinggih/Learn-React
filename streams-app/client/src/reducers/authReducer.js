@@ -1,3 +1,5 @@
+import { SIGN_IN, SIGN_OUT } from "../actions/types";
+
 // authReducer
 
 const INITIAL_STATE = {
@@ -6,13 +8,13 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-		case "SIGN_IN":
+		case SIGN_IN:
 			/**
 			 * create a new object with the same content (use spread),
 			 * plus the new addition, or change.
 			 */
 			return { ...state, isSignedIn: true };
-		case "SIGN_OUT":
+		case SIGN_OUT:
 			return { ...state, isSignedIn: false };
 		default:
 			return state;
