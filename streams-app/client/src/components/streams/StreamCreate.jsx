@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
 class StreamCreate extends Component {
-	renderInput(formProps) {
-		console.log(formProps);
-		return <input {...formProps.input} />;
+	renderInput({ input }) {
+		// Destructuring from formProps
+		return <input {...input} />;
 	}
 
 	render() {
