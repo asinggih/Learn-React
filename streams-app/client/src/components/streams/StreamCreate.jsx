@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
 class StreamCreate extends Component {
-	renderInput({ input, inputLabel }) {
-		// Destructuring from formProps
+	renderInput({ input, inputLabel, meta }) {
+		// Destructuring from Field component
+		// console.log(meta);
 		return (
 			<div className="field">
 				<label>{inputLabel}</label>
 				<input {...input} />
+				<div>{meta.error}</div>
 			</div>
 		);
 	}
@@ -40,8 +42,22 @@ class StreamCreate extends Component {
 	}
 }
 
-// export default StreamCreate;
+const validate = formValues => {
+	const errors = {};
+
+	// Basic validation to check if it's an empty string
+	if (!formValues.title) {
+		errors.title = "Title must be entered";
+	}
+
+	if (!formValues.description) {
+		errors.description = "Description must be entered";
+	}
+
+	return errors;
+};
 
 export default reduxForm({
-	form: "streamCreate"
+	form: "streamCreate",
+	validate
 })(StreamCreate);
