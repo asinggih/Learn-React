@@ -2,17 +2,33 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
 class StreamCreate extends Component {
-	renderInput({ input, inputLabel, meta }) {
-		// Destructuring from Field component
-		// console.log(meta);
+	// Destructuring from meta property
+	renderError = ({ error, touched }) => {
+		// because we only need meta.error and meta.touched
+		if (touched && error) {
+			// if Field has been touched, and there's an error message
+			return (
+				<div className="ui error message">
+					<div className="header">{error}</div>
+				</div>
+			);
+		}
+	};
+
+	// Destructuring from Field component
+	renderInput = ({ input, inputLabel, meta }) => {
+		// if input has been touched and there's an error
+		const dynamicClassName = `field ${
+			meta.error && meta.touched ? "error" : ""
+		}`;
 		return (
-			<div className="field">
+			<div className={dynamicClassName}>
 				<label>{inputLabel}</label>
-				<input {...input} />
-				<div>{meta.error}</div>
+				<input {...input} autoComplete="off" />
+				<div>{this.renderError(meta)}</div>
 			</div>
 		);
-	}
+	};
 
 	onSubmit(formValues) {
 		// We can do whatever with our form values in here. input sanitation etc.
@@ -24,7 +40,7 @@ class StreamCreate extends Component {
 			<form
 				// Submission is handled using redux-form handleSubmit prop
 				onSubmit={this.props.handleSubmit(this.onSubmit)}
-				className="ui form"
+				className="ui form error"
 			>
 				<Field
 					name="title"
