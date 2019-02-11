@@ -31,6 +31,12 @@
       "description": "awesome new stream by me",
       "userId": "100636170809110608815",
       "id": 6
+    },
+    {
+      "title": "Programmatic navigation",
+      "description": "hello blob blob",
+      "userId": "100636170809110608815",
+      "id": 7
     }
   ]
 }
