@@ -19,6 +19,18 @@
       "title": "test another stream",
       "description": "new stream",
       "id": 4
+    },
+    {
+      "title": "I created This stream",
+      "description": "awesome stream to watch",
+      "userId": null,
+      "id": 5
+    },
+    {
+      "title": "New stream by me",
+      "description": "awesome new stream by me",
+      "userId": "100636170809110608815",
+      "id": 6
     }
   ]
 }

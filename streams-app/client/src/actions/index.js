@@ -22,8 +22,10 @@ export const signOut = () => {
 	};
 };
 
-export const createStream = formValues => async dispatch => {
-	const res = await streams.post("/streams", formValues);
+export const createStream = formValues => async (dispatch, getState) => {
+	const { userId } = getState().authentication;
+	// spread the formValues, and add user id into the new object
+	const res = await streams.post("/streams", { ...formValues, userId });
 
 	/**
 	 * Dispatching manually because we're utilising redux-thunk,
