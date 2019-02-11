@@ -1,7 +1,44 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchStreams } from "../../actions";
 
-const StreamList = () => {
-	return <div>StreamList</div>;
+class StreamList extends Component {
+	componentDidMount() {
+		this.props.fetchStreams();
+	}
+
+	renderList() {
+		return this.props.streams.map(stream => {
+			return (
+				<div className="item" key={stream.id}>
+					<i className="large middle aligned icon camera" />
+					<div className="content">
+						{stream.title}
+						<div className="description">{stream.description}</div>
+					</div>
+				</div>
+			);
+		});
+	}
+
+	render() {
+		console.log(this.props.streams);
+		return (
+			<div>
+				<h2>Streams</h2>
+				<div className="ui celled list">{this.renderList()}</div>
+			</div>
+		);
+	}
+}
+
+const mapStateToProps = state => {
+	// mapping our state into props.stream and
+	// converting object of stream objects into array of stream objects
+	return { streams: Object.values(state.streams) };
 };
 
-export default StreamList;
+export default connect(
+	mapStateToProps,
+	{ fetchStreams }
+)(StreamList);

@@ -6,7 +6,6 @@ import {
 	EDIT_STREAM,
 	DELETE_STREAM
 } from "../actions/types";
-import streams from "../apis/streams";
 
 // Stream Reducer
 export default (state = {}, action) => {
