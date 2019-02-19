@@ -6,6 +6,7 @@ import reduxThunk from "redux-thunk";
 
 import App from "./components/App";
 import reducers from "./reducers";
+import "semantic-ui/dist/semantic.min.css";
 
 // Redux dev tools addon setup
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
