@@ -22,8 +22,7 @@
     },
     {
       "title": "I created This stream",
-      "description": "awesome stream to watch",
-      "userId": "100636170809110608815",
+      "description": "I updated this thing!!",
       "id": 5
     },
     {
@@ -34,14 +33,13 @@
     },
     {
       "title": "Programmatic navigation",
-      "description": "hello blob blob",
+      "description": "edited this with PATCH",
       "userId": "100636170809110608815",
       "id": 7
     },
     {
       "title": "Streaming component reuse",
-      "description": "refactoring components",
-      "userId": "100636170809110608815",
+      "description": "refactoring components EDITED",
       "id": 8
     }
   ]
